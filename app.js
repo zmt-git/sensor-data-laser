@@ -1,17 +1,19 @@
-import createError from 'http-errors';
-import express from 'express';
-import cookieParser from 'cookie-parser';
-import logger from 'morgan';
-import router from './routes/index'
+const createError = require('http-errors');
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const router = require('./routes');
 
 const app = express();
+
+app.use('/static',express.static('./public'));
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-router(app)
+router(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

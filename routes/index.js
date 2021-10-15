@@ -1,6 +1,9 @@
-import parseRouter from './parse'
-import databaseRouter from './database'
-export default function router (app) {
+const parseRouter = require('./parse');
+const databaseRouter = require('./database');
+
+function router (app) {
   app.use('/parse', parseRouter)
   app.use('/database', databaseRouter)
 }
+
+module.exports = router;
